@@ -1,10 +1,13 @@
 <x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
-
-        <x-validation-errors class="mb-4" />
+<div class="app app-auth-sign-in align-content-stretch d-flex flex-wrap justify-content-end">
+        <div class="app-auth-background">
+        
+        </div>
+        <div class="app-auth-container">
+            <div class="logo">
+                <a href="/">Finance Mcardi</a>
+            </div>
+            <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="sign-up.html">Sign Up</a></p>
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -12,37 +15,41 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="auth-credentials m-b-xxl">
+                    <label for="signInEmail" class="form-label">Email address</label>
+                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
+                    <label for="signInPassword" class="form-label">Password</label>
+                    <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                </div>
+                <div class="block mt-4 pb-4">
+                    <label for="remember_me" class="flex items-center">
+                        <x-checkbox id="remember_me" name="remember" />
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-4">
+                <div class="auth-submit">
+                    <x-button class="btn btn-primary">
                     {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
+                    </x-button>
+                     @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}" class="auth-forgot-password float-end">Forgot password?</a>
+                    @endif
+                </div>
+                <div class="divider"></div>
+                <div class="auth-alts">
+                    <a href="#" class="auth-alts-google"></a>
+                    <a href="#" class="auth-alts-facebook"></a>
+                    <a href="#" class="auth-alts-twitter"></a>
+                </div>
+            </form> 
+        </div>
+    </div>
 </x-guest-layout>
+
+
+
+
