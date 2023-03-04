@@ -1,23 +1,23 @@
 <div class="app-sidebar">
             <div class="logo">
-                <a href="index.html" class="logo-icon"><span class="logo-text">Neptune</span></a>
+                <a href="index.html" class="logo-icon"><span class="logo-text">Finance Mcardi</span></a>
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
-                        <img src="../../assets/images/avatars/avatar.png">
+                        <img src={{App\Models\User::find(Auth::user()->id)->profile_photo_url}}>
                         <span class="activity-indicator"></span>
-                        <span class="user-info-text">Chloe<br><span class="user-state-info">On a call</span></span>
+                        <span class="user-info-text">{{Auth::user()->name}}<br><span class="user-state-info">{{Auth::user()->email}}</span></span>
                     </a>
                 </div>
             </div>
             <div class="app-menu">
                 <ul class="accordion-menu">
                     <li class="sidebar-title">
-                        Apps
+                        Menu Principal
                     </li>
                     <li class="active-page">
-                        <a href="index.html" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
+                        <a href="{{route("dashboard")}}" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
                     </li>
                     <li>
@@ -290,7 +290,7 @@
                     </li>
                     <li>
                         <a href="#"><i class="material-icons-two-tone">access_time</i>Change Log</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
